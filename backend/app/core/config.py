@@ -132,7 +132,7 @@ class Settings(BaseSettings):
     REDIS_HOST: str = "localhost"
     REDIS_PORT: int = 6379
     REDIS_DB: int = 0
-    REDIS_PASSWORD: Optional[str] = os.getenv("REDIS_PASSWORD")
+    REDIS_PASSWORD: Optional[SecretStr] = Field(None, env="REDIS_PASSWORD")   
     REDIS_MAX_CONNECTIONS: int = 50
     REDIS_SOCKET_TIMEOUT: int = 10
     REDIS_RETRY_ON_TIMEOUT: bool = True

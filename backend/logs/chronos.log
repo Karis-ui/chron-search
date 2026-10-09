@@ -8931,3 +8931,53 @@ sqlalchemy.exc.InvalidRequestError: Mapper 'Mapper[User(users)]' has no property
 [32m2026-10-08 15:07:17 | INFO     | 6267066f | Database engine created successfully[0m
 [32m2026-10-08 15:07:31 | INFO     | 6267066f | 🔗 Generated google authorization URL[0m
 [32m2026-10-08 15:07:31 | INFO     | 6267066f | 🔗 Generated github authorization URL[0m
+[32m2026-10-09 20:53:16 | INFO     | 96725e00 | Creating async database engine for pg-6a1a187-kariukic547-5f06.h.aivencloud.com:16719/defaultdb[0m
+[32m2026-10-09 20:53:17 | INFO     | 96725e00 | Database engine created successfully[0m
+[32m2026-10-09 20:53:33 | INFO     | 96725e00 | 🚀 Starting Chronos Search Engine v3.0.0-masterpiece[0m
+[32m2026-10-09 20:53:33 | INFO     | 96725e00 | Environment: development[0m
+[32m2026-10-09 20:53:33 | INFO     | 96725e00 | Debug mode: True[0m
+[32m2026-10-09 20:53:57 | INFO     | 96725e00 | Database initialized successfully[0m
+[32m2026-10-09 20:53:58 | INFO     | 96725e00 | ✅ Database initialized[0m
+[32m2026-10-09 20:54:06 | INFO     | 96725e00 | ✅ Database health: healthy[0m
+[31m2026-10-09 20:54:06 | ERROR    | 96725e00 | ❌ Redis connection failed: Redis pool creation failed[0m
+[32m2026-10-09 20:54:06 | INFO     | 96725e00 | ✅ Chronos Search Engine is ready![0m
+[32m2026-10-09 20:54:06 | INFO     | 96725e00 | 📍 API: http://localhost:8000/api/v1/health[0m
+[32m2026-10-09 20:54:06 | INFO     | 96725e00 | 📍 Docs: http://localhost:8000/docs[0m
+[32m2026-10-09 20:57:21 | INFO     | 96725e00 | 🛑 Chronos Search Engine shutting down...[0m
+[32m2026-10-09 20:57:22 | INFO     | 96725e00 | ✅ Database connections closed[0m
+[32m2026-10-09 20:57:22 | INFO     | 96725e00 | ✅ Redis connections closed[0m
+[32m2026-10-09 20:57:24 | INFO     | 40f20389 | Creating async database engine for pg-6a1a187-kariukic547-5f06.h.aivencloud.com:16719/defaultdb[0m
+[32m2026-10-09 20:57:24 | INFO     | 40f20389 | Database engine created successfully[0m
+[32m2026-10-09 20:57:27 | INFO     | 40f20389 | 🚀 Starting Chronos Search Engine v3.0.0-masterpiece[0m
+[32m2026-10-09 20:57:27 | INFO     | 40f20389 | Environment: development[0m
+[32m2026-10-09 20:57:27 | INFO     | 40f20389 | Debug mode: True[0m
+[32m2026-10-09 20:57:55 | INFO     | 40f20389 | Database initialized successfully[0m
+[32m2026-10-09 20:57:55 | INFO     | 40f20389 | ✅ Database initialized[0m
+[32m2026-10-09 20:58:06 | INFO     | 40f20389 | ✅ Database health: healthy[0m
+[31m2026-10-09 20:58:06 | ERROR    | 40f20389 | ❌ Redis connection failed: Redis pool creation failed[0m
+[32m2026-10-09 20:58:06 | INFO     | 40f20389 | ✅ Chronos Search Engine is ready![0m
+[32m2026-10-09 20:58:06 | INFO     | 40f20389 | 📍 API: http://localhost:8000/api/v1/health[0m
+[32m2026-10-09 20:58:06 | INFO     | 40f20389 | 📍 Docs: http://localhost:8000/docs[0m
+[32m2026-10-09 20:59:44 | INFO     | 40f20389 | 🛑 Chronos Search Engine shutting down...[0m
+[32m2026-10-09 20:59:46 | INFO     | 40f20389 | ✅ Database connections closed[0m
+[32m2026-10-09 20:59:46 | INFO     | 40f20389 | ✅ Redis connections closed[0m
+[32m2026-10-09 20:59:47 | INFO     | f402e557 | Creating async database engine for pg-6a1a187-kariukic547-5f06.h.aivencloud.com:16719/defaultdb[0m
+[32m2026-10-09 20:59:48 | INFO     | f402e557 | Database engine created successfully[0m
+[32m2026-10-09 20:59:51 | INFO     | f402e557 | 🚀 Starting Chronos Search Engine v3.0.0-masterpiece[0m
+[32m2026-10-09 20:59:51 | INFO     | f402e557 | Environment: development[0m
+[32m2026-10-09 20:59:51 | INFO     | f402e557 | Debug mode: True[0m
+[32m2026-10-09 21:00:15 | INFO     | f402e557 | Database initialized successfully[0m
+[32m2026-10-09 21:00:16 | INFO     | f402e557 | ✅ Database initialized[0m
+[32m2026-10-09 21:00:23 | INFO     | f402e557 | ✅ Database health: healthy[0m
+[32m2026-10-09 21:00:26 | INFO     | f402e557 | ✅ Redis connection established[0m
+[32m2026-10-09 21:00:26 | INFO     | f402e557 | ✅ Chronos Search Engine is ready![0m
+[32m2026-10-09 21:00:26 | INFO     | f402e557 | 📍 API: http://localhost:8000/api/v1/health[0m
+[32m2026-10-09 21:00:26 | INFO     | f402e557 | 📍 Docs: http://localhost:8000/docs[0m
+[32m2026-10-09 21:00:55 | INFO     | f402e557 | Request: GET /docs[0m
+[32m2026-10-09 21:00:55 | INFO     | f402e557 | Response: GET /docs -> 200[0m
+[32m2026-10-09 21:00:56 | INFO     | f402e557 | Request: GET /openapi.json[0m
+[32m2026-10-09 21:00:56 | INFO     | f402e557 | Response: GET /openapi.json -> 200[0m
+[32m2026-10-09 21:01:41 | INFO     | f402e557 | Request: GET /api/v1/health[0m
+[32m2026-10-09 21:01:41 | INFO     | f402e557 | Response: GET /api/v1/health -> 307[0m
+[32m2026-10-09 21:01:41 | INFO     | f402e557 | Request: GET /api/v1/health/[0m
+[32m2026-10-09 21:01:41 | INFO     | f402e557 | Response: GET /api/v1/health/ -> 200[0m
