@@ -27,7 +27,7 @@ router = APIRouter(prefix="/auth",tags=["Authentication"])
 class UserRegister(BaseModel):
     email: EmailStr
     username: str = Field(...,min_length=3,max_length=50)
-    password: str = Field(...,min_length = 100)
+    password: str = Field(...,min_length=8)
     full_name: Optional[str] = Field(None,max_length=100)
     
     @validator('username')
@@ -82,37 +82,41 @@ class APIKeyResponse(BaseModel):
     
 @router.post("/register",response_model=Dict[str,str])
 async def register(user_data:UserRegister,request:Request,db=Depends(get_db)):
-    from sqlalchemy import select
-    stmt = select(User).where((User.email == user_data.email) | (User.username == user_data.username))
+    from sqlalchemy import func, select
+    email = str(user_data.email).lower()
+    stmt = select(User).where(
+        (func.lower(User.email) == email) | (User.username == user_data.username)
+    )
     result = await db.execute(stmt)
-    existing = result.scalar_ne_or_none()
+    existing = result.scalar_one_or_none()
     
     if existing:
         raise ConflictException(
             message="User already exists",
-            details={"email":user_data.email,"username":user_data.username}
+            details={"email":email,"username":user_data.username}
         )
-        hashed_password = hash_password(user_data.password)
-        new_user = User(
-            email=user_data.email,
-            username=user_data.username,
-            full_name=user_data.full_name,
-            hashed_password=hashed_password,
-            role=UserRole.USER,
-            is_active=True,
-            is_verified=False,
-            created_at=datetime.utcnow(),
-        )
-        db.add(new_user)
-        await db.commit()
-        await db.refresh(new_user)
-        logger.info(f"User registered: {user_data.email}")
-        return{
-            "message": "User registered successfully",
-            "user_id": str(new_user.id),
-            "email": new_user.email,
-            "username": new_user.username
-        }
+
+    hashed_password = hash_password(user_data.password)
+    new_user = User(
+        email=email,
+        username=user_data.username,
+        full_name=user_data.full_name,
+        hashed_password=hashed_password,
+        role=UserRole.USER,
+        is_active=True,
+        is_verified=False,
+        created_at=datetime.utcnow(),
+    )
+    db.add(new_user)
+    await db.commit()
+    await db.refresh(new_user)
+    logger.info(f"User registered: {email}")
+    return{
+        "message": "User registered successfully",
+        "user_id": str(new_user.id),
+        "email": new_user.email,
+        "username": new_user.username
+    }
     
 @router.post("/login",response_model=TokenResponse)
 @rate_limit(limit=10,period=60)
@@ -122,8 +126,10 @@ async def login(
     db=Depends(get_db),
     redis=Depends(get_redis)
 ):
-    from sqlalchemy import select
-    stmt = select(User).where(User.email == form_data.username)
+    from sqlalchemy import func, select
+    stmt = select(User).where(
+        func.lower(User.email) == form_data.username.strip().lower()
+    )
     result = await db.execute(stmt)
     user = result.scalar_one_or_none()
     
@@ -138,7 +144,7 @@ async def login(
     await db.commit()
     
     access_token = create_access_token({"sub":str(user.id)})
-    refresh_token = refresh_access_token({"sub":str(user.id)})
+    refresh_token = create_refresh_token({"sub":str(user.id)})
     logger.info(f"User logged in: {user.email}")
     
     rate_limiter = RateLimiter(redis)
@@ -170,16 +176,9 @@ async def refresh_token(
     db = Depends(get_db)
 ):
     tokens = refresh_access_token(data.refresh_token)
-    if not tokens:
-        raise UnauthorizedException(message="Invalid or expired refresh token")
-    
-    access_token, new_refresh_token = tokens
-    
-    payload = verify_token(access_token)
-    if not payload:
-        raise UnauthorizedException(message="Invalid token")
-    
-    user_id = payload.get("sub")
+    access_token = tokens["access_token"]
+    new_refresh_token = tokens["refresh_token"]
+    user_id = tokens["user_id"]
     
     from sqlalchemy import select
     stmt = select(User).where(User.id == user_id)

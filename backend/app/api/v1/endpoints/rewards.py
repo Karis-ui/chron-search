@@ -21,7 +21,7 @@ async def get_balance(
     user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ) -> Dict[str, float]:
-    return await RewardsService.get_balance(db=db, user=user)
+    return await RewardsService.get_or_create_balance(db=db, user=user)
 
 @router.get("/ledger")
 async def get_ledger(
@@ -46,7 +46,7 @@ async def confirm_pending_rewards(
 ) -> Dict[str, float]:
     return await RewardsService.confirm_pending(db=db, user_id=str(user.id))
 
-@router.post("/connect/onboard")
+@router.post("/connect/onboarding")
 async def start_connect_onboarding(
     user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
@@ -57,7 +57,7 @@ async def start_connect_onboarding(
         return_url=f"{settings.FRONTEND_URL}/rewards/connect/success",
         refresh_url=f"{settings.FRONTEND_URL}/rewards/connect/refresh"
     )
-    return {"url": url}
+    return {"onboarding_url": url}
 
 @router.get("/connect/status")
 async def get_connect_status(

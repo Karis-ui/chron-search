@@ -92,16 +92,13 @@ export const PROTECTED_ROUTES: readonly string[] = [
     ROUTES.SETTINGS_SECURITY,
     ROUTES.SETTINGS_NOTIFICATIONS,
     ROUTES.SETTINGS_API,
-    ROUTES.NOTIFICATIONS,
     ROUTES.BILLING,
     ROUTES.SUBSCRIPTION,
     ROUTES.SUPPORT,
     ROUTES.EXPORTS,
-    ROUTES.BILLING,
     ROUTES.REWARDS,
     ROUTES.CHECKOUT_SUCCESS,
     ROUTES.CHECKOUT_CANCEL,
-    ROUTES.CONNECT_SUCCESS,
     ROUTES.CONNECT_REFRESH,
     ROUTES.BOOSTS,
 ];
@@ -185,10 +182,33 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
         badge: 'LIVE',
         dividerAfter: true,
     },
-    { label: 'Pricing', path: ROUTES.PRICING, icon: 'FiZap', section: 'billing' },
-    { label: 'Billing', path: ROUTES.BILLING, icon: 'FiCreditCard', section: 'billing', requiresAuth: true },
-    { label: 'Rewards', path: ROUTES.REWARDS, icon: 'FiDollarSign', section: 'billing', requiresAuth: true },
-    { label: 'Verifications', path: ROUTES.VERIFICATIONS, icon: 'FiAward', section: 'billing', requiresAuth: true },
+    {
+        label: 'Pricing',
+        path: ROUTES.PRICING,
+        icon: 'FiZap',
+        section: 'billing'
+    },
+    {
+        label: 'Billing',
+        path: ROUTES.BILLING,
+        icon: 'FiCreditCard',
+        section: 'billing',
+        requiresAuth: true
+    },
+    {
+        label: 'Rewards',
+        path: ROUTES.REWARDS,
+        icon: 'FiDollarSign',
+        section: 'billing',
+        requiresAuth: true
+    },
+    {
+        label: 'Verifications',
+        path: ROUTES.VERIFICATIONS,
+        icon: 'FiAward',
+        section: 'billing',
+        requiresAuth: true
+    },
     {
         label: 'Settings',
         path: ROUTES.SETTINGS,

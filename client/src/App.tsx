@@ -55,6 +55,10 @@ const RegisterPage = lazy(() => import('./pages/RegisterPage'));
 const ForgotPasswordPage = lazy(() => import('./pages/ForgotPasswordPage'));
 const ResetPasswordPage = lazy(() => import('./pages/ResetPasswordPage'));
 const WorkspaceModulePage = lazy(() => import('./pages/WorkspaceModulePage'));
+const PricingPage = lazy(() => import('./pages/PricingPage'));
+const BillingPage = lazy(() => import('./pages/BillingPage'));
+const RewardsPage = lazy(() => import('./pages/RewardsPage'));
+const VerificationsPage = lazy(() => import('./pages/VerificationsPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 const ErrorPage = lazy(() => import('./pages/ErrorPage'));
 const Home = lazy(() => import('./pages/Home'));
@@ -333,6 +337,17 @@ const AppRouter: React.FC = () => {
         />
 
         <Route
+          path={ROUTES.PRICING}
+          element={
+            <AppLayout>
+              <LazyRoute>
+                <PricingPage />
+              </LazyRoute>
+            </AppLayout>
+          }
+        />
+
+        <Route
           path={ROUTES.SEARCH}
           element={
             <ProtectedRoute>
@@ -397,6 +412,36 @@ const AppRouter: React.FC = () => {
           element={
             <ProtectedRoute>
               <AppLayout><WorkspaceModulePage section="settings" /></AppLayout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path={ROUTES.BILLING}
+          element={
+            <ProtectedRoute>
+              <AppLayout>
+                <LazyRoute><BillingPage /></LazyRoute>
+              </AppLayout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path={ROUTES.REWARDS}
+          element={
+            <ProtectedRoute>
+              <AppLayout>
+                <LazyRoute><RewardsPage /></LazyRoute>
+              </AppLayout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path={ROUTES.VERIFICATIONS}
+          element={
+            <ProtectedRoute>
+              <AppLayout>
+                <LazyRoute><VerificationsPage /></LazyRoute>
+              </AppLayout>
             </ProtectedRoute>
           }
         />

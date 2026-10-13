@@ -108,7 +108,7 @@ async def create_verification_checkout(
     if not price_id:
         raise HTTPException(status_code=400, detail="Invalid verification level")
     
-    url = await service.create_checkout_session(
+    url = await service.create_subscription_checkout(
         user_id=current_user.id,
         payment_type="verification",
         verification_level=data.level,
