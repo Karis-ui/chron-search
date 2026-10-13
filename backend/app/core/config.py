@@ -87,6 +87,7 @@ class Settings(BaseSettings):
     POSTGRES_ECHO: bool = False
     POSTGRES_POOL_PRE_PING: bool = True
     POSTGRES_POOL_RECYCLE: int = 3600
+    POSTGRES_SSL: bool = Field(False, env="POSTGRES_SSL")
     ENABLE_TIMESCALEDB: bool = False
     GOOGLE_CLIENT_ID: Optional[str] = Field(None, env="GOOGLE_CLIENT_ID")
     GOOGLE_CLIENT_SECRET: Optional[SecretStr] = Field(None, env="GOOGLE_CLIENT_SECRET")

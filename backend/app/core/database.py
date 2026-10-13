@@ -43,6 +43,7 @@ def get_async_engine() -> AsyncEngine:
                 connect_args={
                     "timeout": 30,
                     "command_timeout": 60,
+                    "ssl": "require" if settings.POSTGRES_SSL else False,
                     "server_settings": {
                         "application_name": "chronos_search",
                         "timezone": "UTC",
