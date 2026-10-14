@@ -169,7 +169,7 @@ pyjsparser
 PyOTP
 pyparsing
 PySocks
-psycopg
+psycopg[binary]
 pytest
 pytest-asyncio
 pytest-cov
