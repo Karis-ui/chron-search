@@ -169,6 +169,7 @@ pyjsparser
 PyOTP
 pyparsing
 PySocks
+psycopg
 pytest
 pytest-asyncio
 pytest-cov
