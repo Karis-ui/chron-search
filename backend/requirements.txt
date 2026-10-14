@@ -121,8 +121,7 @@ oauthlib
 onnx
 onnxruntime
 onnxruntime-gpu
-opencv-python
-opencv-python-headless
+opencv-python-headless==4.12.0.88
 openpyxl
 opentelemetry-api
 opentelemetry-instrumentation
