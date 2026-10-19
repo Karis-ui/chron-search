@@ -50,7 +50,7 @@ class Settings(BaseSettings):
     PROJECT_NAME: str = "Chronos Search Engine"
     PROJECT_DESCRIPTION: str = "AI-powered social media search with 6-month temporal analysis"
     VERSION: str = "3.0.0-masterpiece"
-    DEBUG: bool = True
+    DEBUG: bool = False
     ENVIRONMENT: str = "production"
     
     API_V1_STR: str = "/api/v1"
