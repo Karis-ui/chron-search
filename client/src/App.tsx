@@ -589,7 +589,7 @@ const AppContent: React.FC = () => {
       <UpgradePrompt />
 
       <Toaster
-        position="bottom-right"
+        position="top-left"
         toastOptions={{
           duration: 4000,
           style: {
