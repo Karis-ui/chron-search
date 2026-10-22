@@ -37,7 +37,7 @@ class ApiClient {
 
     constructor() {
         this.client = axios.create({
-            baseURL: import.meta.env.VITE_API_URL || 'http://localhost:8000',
+            baseURL: import.meta.env.VITE_API_URL || 'https://chron-search.up.railway.app/',
             timeout: 30000,
             headers: {
                 'Content-Type': 'application/json',
@@ -225,7 +225,7 @@ class ApiClient {
         return response.data;
     }
     getWebSocketUrl(path: string): string {
-        const baseURL = import.meta.env.VITE_WS_URL || 'ws://localhost:8000';
+        const baseURL = import.meta.env.VITE_WS_URL || 'wss://chron-search.up.railway.app/';
         return `${baseURL}${path}`;
     }
 }
