@@ -63,7 +63,8 @@ class Settings(BaseSettings):
     ALLOWED_ORIGINS: List[str] = [
         "http://localhost:3000",
         "http://localhost:5173",
-        "https://chronos.example.com",
+        "https://chron-search.up.railway.app",
+        "https://chron-search-8u9ftomjf-karis-projects1.vercel.app",
     ]
     
     SECRET_KEY: SecretStr = Field(
@@ -93,8 +94,8 @@ class Settings(BaseSettings):
     GOOGLE_CLIENT_SECRET: Optional[SecretStr] = Field(None, env="GOOGLE_CLIENT_SECRET")
     GITHUB_CLIENT_ID: Optional[str] = Field(None, env="GITHUB_CLIENT_ID")
     GITHUB_CLIENT_SECRET: Optional[SecretStr] = Field(None, env="GITHUB_CLIENT_SECRET")
-    BACKEND_URL: str = Field("http://localhost:8000", env="BACKEND_URL")
-    FRONTEND_URL: str = Field("http://localhost:3000", env="FRONTEND_URL")
+    BACKEND_URL: str = Field("https://chron-search.up.railway.app", env="BACKEND_URL")
+    FRONTEND_URL: str = Field("https://chron-search-8u9ftomjf-karis-projects1.vercel.app", env="FRONTEND_URL")
 
     @property
     def TRUSTED_HOSTS(self) -> List[str]:

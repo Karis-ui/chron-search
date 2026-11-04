@@ -27932,3 +27932,230 @@ AttributeError: 'dict' object has no attribute 'role'[0m
 [32m2026-10-13 22:36:00 | INFO     | 25203e75 | 🛑 Chronos Search Engine shutting down...[0m
 [32m2026-10-13 22:36:00 | INFO     | 25203e75 | ✅ Database connections closed[0m
 [32m2026-10-13 22:36:00 | INFO     | 25203e75 | ✅ Redis connections closed[0m
+[32m2026-10-29 12:07:25 | INFO     | 806d286a | Creating async database engine for pg-6a1a187-kariukic547-5f06.h.aivencloud.com:16719/defaultdb[0m
+[32m2026-10-29 12:07:26 | INFO     | 806d286a | Database engine created successfully[0m
+[32m2026-10-29 12:07:56 | INFO     | 806d286a | 🚀 Starting Chronos Search Engine v3.0.0-masterpiece[0m
+[32m2026-10-29 12:07:56 | INFO     | 806d286a | Environment: development[0m
+[32m2026-10-29 12:07:56 | INFO     | 806d286a | Debug mode: True[0m
+[31m2026-10-29 12:07:56 | ERROR    | 806d286a | Database initialization failed: [Errno 11001] getaddrinfo failed
+Traceback (most recent call last):
+  File "C:\Users\Admin\PP\Chromos-Search\backend\app\core\database.py", line 238, in init_db
+    async with get_async_engine().begin() as conn:
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\sqlalchemy\ext\asyncio\engine.py", line 1068, in begin
+    async with conn:
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\sqlalchemy\ext\asyncio\base.py", line 121, in __aenter__
+    return await self.start(is_ctxmanager=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\sqlalchemy\ext\asyncio\engine.py", line 275, in start
+    await greenlet_spawn(self.sync_engine.connect)
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 201, in greenlet_spawn
+    result = context.throw(*sys.exc_info())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 3295, in connect
+    return self._connection_cls(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 144, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 3319, in raw_connection
+    return self.pool.connect()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 448, in connect
+    return _ConnectionFairy._checkout(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 1272, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 712, in checkout
+    rec = pool._do_get()
+          ^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\sqlalchemy\pool\impl.py", line 178, in _do_get
+    with util.safe_reraise():
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 122, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\sqlalchemy\pool\impl.py", line 176, in _do_get
+    return self._create_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 389, in _create_connection
+    return _ConnectionRecord(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 674, in __init__
+    self.__connect()
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 900, in __connect
+    with util.safe_reraise():
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 122, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 896, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\sqlalchemy\engine\create.py", line 667, in connect
+    return dialect.connect(*cargs_tup, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 630, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py", line 955, in connect
+    await_only(creator_fn(*arg, **kw)),
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\asyncpg\connection.py", line 2443, in connect
+    return await connect_utils._connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\asyncpg\connect_utils.py", line 1249, in _connect
+    raise last_error or exceptions.TargetServerAttributeNotMatched(
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\asyncpg\connect_utils.py", line 1218, in _connect
+    conn = await _connect_addr(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\asyncpg\connect_utils.py", line 1050, in _connect_addr
+    return await __connect_addr(params, False, *args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\asyncpg\connect_utils.py", line 1099, in __connect_addr
+    tr, pr = await connector
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\asyncpg\connect_utils.py", line 969, in _create_ssl_connection
+    tr, pr = await loop.create_connection(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\asyncio\base_events.py", line 1046, in create_connection
+    infos = await self._ensure_resolved(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\asyncio\base_events.py", line 1420, in _ensure_resolved
+    return await loop.getaddrinfo(host, port, family=family, type=type,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\asyncio\base_events.py", line 868, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\socket.py", line 962, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 11001] getaddrinfo failed[0m
+[31m2026-10-29 12:07:57 | ERROR    | 806d286a | ❌ Database initialization failed: Database initialization failed[0m
+[31m2026-10-29 12:07:57 | ERROR    | 806d286a | ❌ Redis connection failed: Error 11001 connecting to touching-doe-208278.upstash.io:6379. getaddrinfo failed.[0m
+[32m2026-10-29 12:07:57 | INFO     | 806d286a | ✅ Chronos Search Engine is ready![0m
+[32m2026-10-29 12:07:57 | INFO     | 806d286a | 📍 API: http://localhost:8000/api/v1/health[0m
+[32m2026-10-29 12:07:57 | INFO     | 806d286a | 📍 Docs: http://localhost:8000/docs[0m
+[32m2026-10-29 12:08:35 | INFO     | 806d286a | 🛑 Chronos Search Engine shutting down...[0m
+[32m2026-10-29 12:08:35 | INFO     | 806d286a | ✅ Database connections closed[0m
+[32m2026-10-29 12:08:35 | INFO     | 806d286a | ✅ Redis connections closed[0m
+[32m2026-10-29 12:08:46 | INFO     | c5f8ed3d | Creating async database engine for pg-6a1a187-kariukic547-5f06.h.aivencloud.com:16719/defaultdb[0m
+[32m2026-10-29 12:08:47 | INFO     | c5f8ed3d | Database engine created successfully[0m
+[32m2026-10-29 12:08:51 | INFO     | c5f8ed3d | 🚀 Starting Chronos Search Engine v3.0.0-masterpiece[0m
+[32m2026-10-29 12:08:51 | INFO     | c5f8ed3d | Environment: development[0m
+[32m2026-10-29 12:08:51 | INFO     | c5f8ed3d | Debug mode: True[0m
+[31m2026-10-29 12:08:51 | ERROR    | c5f8ed3d | Database initialization failed: [Errno 11001] getaddrinfo failed
+Traceback (most recent call last):
+  File "C:\Users\Admin\PP\Chromos-Search\backend\app\core\database.py", line 238, in init_db
+    async with get_async_engine().begin() as conn:
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\sqlalchemy\ext\asyncio\engine.py", line 1068, in begin
+    async with conn:
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\sqlalchemy\ext\asyncio\base.py", line 121, in __aenter__
+    return await self.start(is_ctxmanager=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\sqlalchemy\ext\asyncio\engine.py", line 275, in start
+    await greenlet_spawn(self.sync_engine.connect)
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 201, in greenlet_spawn
+    result = context.throw(*sys.exc_info())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 3295, in connect
+    return self._connection_cls(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 144, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 3319, in raw_connection
+    return self.pool.connect()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 448, in connect
+    return _ConnectionFairy._checkout(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 1272, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 712, in checkout
+    rec = pool._do_get()
+          ^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\sqlalchemy\pool\impl.py", line 178, in _do_get
+    with util.safe_reraise():
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 122, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\sqlalchemy\pool\impl.py", line 176, in _do_get
+    return self._create_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 389, in _create_connection
+    return _ConnectionRecord(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 674, in __init__
+    self.__connect()
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 900, in __connect
+    with util.safe_reraise():
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 122, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 896, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\sqlalchemy\engine\create.py", line 667, in connect
+    return dialect.connect(*cargs_tup, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 630, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py", line 955, in connect
+    await_only(creator_fn(*arg, **kw)),
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\asyncpg\connection.py", line 2443, in connect
+    return await connect_utils._connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\asyncpg\connect_utils.py", line 1249, in _connect
+    raise last_error or exceptions.TargetServerAttributeNotMatched(
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\asyncpg\connect_utils.py", line 1218, in _connect
+    conn = await _connect_addr(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\asyncpg\connect_utils.py", line 1050, in _connect_addr
+    return await __connect_addr(params, False, *args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\asyncpg\connect_utils.py", line 1099, in __connect_addr
+    tr, pr = await connector
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PP\Chromos-Search\venv\Lib\site-packages\asyncpg\connect_utils.py", line 969, in _create_ssl_connection
+    tr, pr = await loop.create_connection(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\asyncio\base_events.py", line 1046, in create_connection
+    infos = await self._ensure_resolved(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\asyncio\base_events.py", line 1420, in _ensure_resolved
+    return await loop.getaddrinfo(host, port, family=family, type=type,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\asyncio\base_events.py", line 868, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\socket.py", line 962, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 11001] getaddrinfo failed[0m
+[31m2026-10-29 12:08:51 | ERROR    | c5f8ed3d | ❌ Database initialization failed: Database initialization failed[0m
+[31m2026-10-29 12:08:51 | ERROR    | c5f8ed3d | ❌ Redis connection failed: Error 11001 connecting to touching-doe-208278.upstash.io:6379. getaddrinfo failed.[0m
+[32m2026-10-29 12:08:51 | INFO     | c5f8ed3d | ✅ Chronos Search Engine is ready![0m
+[32m2026-10-29 12:08:51 | INFO     | c5f8ed3d | 📍 API: http://localhost:8000/api/v1/health[0m
+[32m2026-10-29 12:08:51 | INFO     | c5f8ed3d | 📍 Docs: http://localhost:8000/docs[0m
