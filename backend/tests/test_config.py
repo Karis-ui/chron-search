@@ -16,11 +16,11 @@ def test_database_url():
 def test_trusted_hosts_are_extracted_from_urls():
     configured = Settings(
         HOST="0.0.0.0",
-        ALLOWED_ORIGINS=["http://localhost:5173", "https://search.example.com"],
-        BACKEND_URL="https://api.example.com",
+        ALLOWED_ORIGINS=["http://localhost:5173", "https://chron-search-pjkxhigpr-karis-projects1.vercel.app"],
+        BACKEND_URL="https://chron-search.up.railway.app",
     )
 
-    assert {"localhost", "127.0.0.1", "search.example.com", "api.example.com"}.issubset(
+    assert {"localhost", "127.0.0.1", "chron-search.up.railway.app"}.issubset(
         set(configured.TRUSTED_HOSTS)
     )
     assert all("://" not in host for host in configured.TRUSTED_HOSTS)
@@ -32,6 +32,20 @@ def test_health_route_accepts_localhost_host_header():
     )
 
     assert response.status_code == 200
+
+def test_registration_cors_allows_current_vercel_frontend():
+    origin = "https://chron-search-pjkxhigpr-karis-projects1.vercel.app"
+    response = TestClient(create_app()).options(
+        "/api/v1/auth/register",
+        headers={
+            "Origin": origin,
+            "Access-Control-Request-Method": "POST",
+            "Access-Control-Request-Headers": "content-type",
+        },
+    )
+
+    assert response.status_code == 200
+    assert response.headers["access-control-allow-origin"] == origin
 
 def test_redis_rl():
     url = settings.REDIS_URL

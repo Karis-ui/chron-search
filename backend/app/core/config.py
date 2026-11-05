@@ -65,6 +65,7 @@ class Settings(BaseSettings):
         "http://localhost:5173",
         "https://chron-search.up.railway.app",
         "https://chron-search-8u9ftomjf-karis-projects1.vercel.app",
+        "https://chron-search-pjkxhigpr-karis-projects1.vercel.app",
     ]
     
     SECRET_KEY: SecretStr = Field(
@@ -95,7 +96,7 @@ class Settings(BaseSettings):
     GITHUB_CLIENT_ID: Optional[str] = Field(None, env="GITHUB_CLIENT_ID")
     GITHUB_CLIENT_SECRET: Optional[SecretStr] = Field(None, env="GITHUB_CLIENT_SECRET")
     BACKEND_URL: str = Field("https://chron-search.up.railway.app", env="BACKEND_URL")
-    FRONTEND_URL: str = Field("https://chron-search-8u9ftomjf-karis-projects1.vercel.app", env="FRONTEND_URL")
+    FRONTEND_URL: str = Field("https://chron-search-pjkxhigpr-karis-projects1.vercel.app", env="FRONTEND_URL")
 
     @property
     def TRUSTED_HOSTS(self) -> List[str]:
