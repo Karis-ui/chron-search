@@ -62,13 +62,13 @@ export interface UserProfile {
 }
 
 export const authApi = {
-    login: (data: LoginRequest) => {
-        return apiClient.post<LoginResponse>('/api/v1/auth/login', data, {
+    login: async (data: LoginRequest) => {
+        const formData = new URLSearchParams();
+        formData.append('username', data.username);
+        formData.append('password', data.password);
+
+        return apiClient.post<LoginResponse>('/api/v1/auth/login', formData, {
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            data: new URLSearchParams({
-                username: data.username,
-                password: data.password
-            }),
         });
     },
 
