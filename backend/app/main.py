@@ -74,7 +74,16 @@ def create_app() -> FastAPI:
         allow_origin_regex=r"https://.*\.vercel\.app",
         allow_credentials=True,
         allow_methods=["*"],
-        allow_headers=["*"],
+        allow_headers=[
+            "Content-Type",
+            "Authorization",
+            "X-Correlation-ID",
+            "X-Client-Version",
+            "X-Client-Type",
+            "X-Request-Time",
+            "Accept",
+            "Origin",
+        ],
         expose_headers=["X-Correlation-ID", "X-Response-Time"],
     )
     
