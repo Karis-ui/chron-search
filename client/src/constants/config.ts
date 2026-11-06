@@ -2,8 +2,8 @@ export const ENV = {
     MODE: import.meta.env.MODE,
     DEV: import.meta.env.DEV,
     PROD: import.meta.env.PROD,
-    API_URL: import.meta.env.VITE_API_URL || 'http://localhost:8000',
-    WS_URL: import.meta.env.VITE_WS_URL || 'ws://localhost:8000',
+    API_URL: import.meta.env.VITE_API_URL || 'https://chron-search.up.railway.app',
+    WS_URL: import.meta.env.VITE_WS_URL || 'wss://chron-search.up.railway.app',
     APP_VERSION: import.meta.env.VITE_APP_VERSION || '3.0.0',
     APP_NAME: import.meta.env.VITE_APP_NAME || 'Chronos Search',
     APP_DESCRIPTION:
