@@ -47,6 +47,23 @@ def test_registration_cors_allows_current_vercel_frontend():
     assert response.status_code == 200
     assert response.headers["access-control-allow-origin"] == origin
 
+def test_cors_headers_are_added_to_internal_server_errors():
+    app = create_app()
+
+    async def fail():
+        raise RuntimeError("test failure")
+
+    app.app.add_api_route("/test-internal-error", fail)
+    response = TestClient(app, raise_server_exceptions=False).get(
+        "/test-internal-error",
+        headers={"Origin": "https://chron-search-pjkxhigpr-karis-projects1.vercel.app"},
+    )
+
+    assert response.status_code == 500
+    assert response.headers["access-control-allow-origin"] == (
+        "https://chron-search-pjkxhigpr-karis-projects1.vercel.app"
+    )
+
 def test_redis_rl():
     url = settings.REDIS_URL
     assert "redis://" in url

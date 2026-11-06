@@ -2,6 +2,7 @@ from fastapi import FastAPI, Request, status
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.trustedhost import TrustedHostMiddleware
+from starlette.types import ASGIApp
 from contextlib import asynccontextmanager
 import time
 import uuid
@@ -51,7 +52,7 @@ async def lifespan(app: FastAPI):
     await RedisConnectionPool.close_pool()
     logger.info("✅ Redis connections closed")
 
-def create_app() -> FastAPI:
+def create_app() -> ASGIApp:
     app = FastAPI(
         title=settings.PROJECT_NAME,
         description=settings.PROJECT_DESCRIPTION,
@@ -67,25 +68,6 @@ def create_app() -> FastAPI:
         if request.url.path == "/api/v1/billing/webhook":
             request.state.rwa_body = await request.body()
         return await call_next(request)
-    
-    app.add_middleware(
-        CORSMiddleware,
-        allow_origins=settings.ALLOWED_ORIGINS,
-        allow_origin_regex=r"https://.*\.vercel\.app",
-        allow_credentials=True,
-        allow_methods=["*"],
-        allow_headers=[
-            "Content-Type",
-            "Authorization",
-            "X-Correlation-ID",
-            "X-Client-Version",
-            "X-Client-Type",
-            "X-Request-Time",
-            "Accept",
-            "Origin",
-        ],
-        expose_headers=["X-Correlation-ID", "X-Response-Time"],
-    )
     
     app.add_middleware(
         TrustedHostMiddleware,
@@ -185,7 +167,24 @@ def create_app() -> FastAPI:
             "timestamp": time.time(),
         }
     
-    return app
+    return CORSMiddleware(
+        app=app,
+        allow_origins=settings.ALLOWED_ORIGINS,
+        allow_origin_regex=r"https://.*\.vercel\.app",
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=[
+            "Content-Type",
+            "Authorization",
+            "X-Correlation-ID",
+            "X-Client-Version",
+            "X-Client-Type",
+            "X-Request-Time",
+            "Accept",
+            "Origin",
+        ],
+        expose_headers=["X-Correlation-ID", "X-Response-Time"],
+    )
 
 app = create_app()
 

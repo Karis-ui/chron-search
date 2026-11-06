@@ -66,11 +66,11 @@ def client() -> Generator:
         async with TestingAsyncSessionLocal() as session:
             yield session
     
-    app.dependency_overrides[get_db] = override_get_db
+    app.app.dependency_overrides[get_db] = override_get_db
     with TestClient(app) as test_client:
         yield test_client
         
-    app.dependency_overrides.clear()
+    app.app.dependency_overrides.clear()
     
 @pytest.fixture
 async def test_user(db_session:AsyncSession) -> User:
