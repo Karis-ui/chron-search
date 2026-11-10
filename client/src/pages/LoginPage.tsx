@@ -35,7 +35,7 @@ import { LIMITS } from '../constants/config';
 import { OAuthButtons } from '../components/auth/OAuthButtons';
 
 const loginSchema = z.object({
-    email: z.string().min(1, 'Email is required').email('Invalid email address'),
+    username: z.string().min(2, 'Username is required').max(100, 'Username is too long'),
     password: z.string().min(LIMITS.auth.passwordMinLength, 'Password is too short').max(LIMITS.auth.passwordMaxLength, `Password must be at least ${LIMITS.auth.passwordMinLength} characters`),
     rememberMe: z.boolean().optional(),
 });
@@ -47,11 +47,11 @@ export const LoginPage: React.FC = () => {
     const { login, isLoading, error, isAuthenticated } = useAuth();
 
     const [showPassword, setShowPassword] = useState(false);
-    const [isFocused, setIsFocused] = useState<'email' | 'password' | null>(null);
+    const [isFocused, setIsFocused] = useState<'username' | 'password' | null>(null);
     const [submitAttempts, setSubmitAttempts] = useState(0);
     const [systemTime, setSystemTime] = useState(new Date());
 
-    const emailInputRef = useRef<HTMLInputElement>(null);
+    const usernameInputRef = useRef<HTMLInputElement>(null);
     const {
         register,
         handleSubmit,
@@ -59,7 +59,7 @@ export const LoginPage: React.FC = () => {
         watch,
     } = useForm<LoginFormData>({
         defaultValues: {
-            email: "",
+            username: "",
             password: "",
             rememberMe: false,
         },
@@ -67,7 +67,7 @@ export const LoginPage: React.FC = () => {
         mode: "onChange",
         shouldFocusError: true,
     });
-    const watchedEmail = watch('email');
+    const watchedUsername = watch('username');
     const matchedPassword = watch('password');
     const passwordStrength = React.useMemo(() => {
         if (!matchedPassword) return 0;
@@ -124,7 +124,7 @@ export const LoginPage: React.FC = () => {
 
 
     useEffect(() => {
-        const timer = setTimeout(() => emailInputRef.current?.focus(), 500);
+        const timer = setTimeout(() => usernameInputRef.current?.focus(), 500);
         return () => clearTimeout(timer);
     }, []);
 
@@ -143,7 +143,7 @@ export const LoginPage: React.FC = () => {
         async (data: LoginFormData) => {
             setSubmitAttempts((prev) => prev + 1);
 
-            const success = await login(data.email, data.password);
+            const success = await login(data.username, data.password);
 
             if (success) {
                 const from = (location.state as any)?.from?.pathname || ROUTES.HOME;
@@ -317,21 +317,21 @@ export const LoginPage: React.FC = () => {
                                     </label>
                                     <div className="relative">
                                         <input
-                                            {...register('email')}
+                                            {...register('username')}
                                             ref={(e) => {
-                                                register('email').ref(e);
-                                                (emailInputRef as any).current = e;
+                                                register('username').ref(e);
+                                                (usernameInputRef as any).current = e;
                                             }}
-                                            type="email"
-                                            autoComplete="email"
-                                            placeholder="operator@chronos.io"
-                                            onFocus={() => setIsFocused('email')}
+                                            type="text"
+                                            autoComplete="username"
+                                            placeholder="operator"
+                                            onFocus={() => setIsFocused('username')}
                                             onBlur={() => setIsFocused(null)}
                                             className={`w-full px-4 py-3 bg-white/5 border rounded-xl text-white text-sm placeholder-gray-600
                         focus:outline-none transition-all font-mono
-                        ${errors.email
+                        ${errors.username
                                                     ? 'border-red-500/50 focus:border-red-500'
-                                                    : isFocused === 'email'
+                                                    : isFocused === 'username'
                                                         ? 'border-cyan-400/50 focus:border-cyan-400 shadow-lg shadow-cyan-500/10'
                                                         : 'border-white/10 hover:border-white/20 focus:border-cyan-400/50'
                                                 }
@@ -339,7 +339,7 @@ export const LoginPage: React.FC = () => {
                                             disabled={isLoading || isSubmitting}
                                         />
 
-                                        {watchedEmail && !errors.email && (
+                                        {watchedUsername && !errors.username && (
                                             <motion.div
                                                 initial={{ scale: 0, opacity: 0 }}
                                                 animate={{ scale: 1, opacity: 1 }}
@@ -351,7 +351,7 @@ export const LoginPage: React.FC = () => {
                                     </div>
 
                                     <AnimatePresence>
-                                        {errors.email && (
+                                        {errors.username && (
                                             <motion.p
                                                 initial={{ opacity: 0, y: -5 }}
                                                 animate={{ opacity: 1, y: 0 }}
@@ -359,7 +359,7 @@ export const LoginPage: React.FC = () => {
                                                 className="text-[10px] text-red-400 font-mono mt-1.5 flex items-center gap-1"
                                             >
                                                 <FiAlertCircle className="w-3 h-3" />
-                                                {errors.email.message}
+                                                {errors.username.message}
                                             </motion.p>
                                         )}
                                     </AnimatePresence>

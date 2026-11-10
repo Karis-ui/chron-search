@@ -78,7 +78,7 @@ class ApiClient {
                 }
                 const correlationId = this.generateCorrelationId();
                 config.headers['X-Correlation-ID'] = correlationId;
-                config.headers['X-Client-Version'] = import.meta.env.VITE_APP_BERSION || '3.0.0';
+                config.headers['X-Client-Version'] = '3.0.0';
                 config.headers['X-Client-Type'] = 'web';
                 config.headers['X-Request-Time'] = Date.now().toString();
                 return config;
