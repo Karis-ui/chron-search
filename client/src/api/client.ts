@@ -39,10 +39,6 @@ class ApiClient {
         this.client = axios.create({
             baseURL: 'https://chron-search.up.railway.app',
             timeout: 30000,
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
             withCredentials: true,
         });
         this.setupInterceptors();
